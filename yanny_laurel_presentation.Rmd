@@ -1,0 +1,295 @@
+---
+title: "Dialectal Variation in Interpretation of an Auditory Illusion"
+author: "Afton Coombs"
+date: "9/9/2019"
+output: 
+  ioslides_presentation:
+    css: styles.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introduction
+
+<strong>Dialectal Variation in Interpretation of an Auditory Illusion:
+Or, Laurel vs. Yanny</strong>
+
+
+In May 2018, Instagram influencer Chloe Feldman posted a computer-edited audio 
+clip which became a viral topic of debate on social media. She asked listeners
+to vote on whether they heard "Laurel" or "Yanny" after listening to the clip.
+Some listeners definitively heard "Laurel", while others distinctly heard 
+"Yanny" -- and so the debate began.
+
+<a href="https://www.nytimes.com/interactive/2018/05/16/upshot/audio-clip-yanny-laurel-debate.html">Listen here</a>
+
+<a href ="https://twitter.com/search?q=%23yannyvslaurel&src=typed_query&f=top">See Tweets</a>
+
+## Hypothesizing in the Media
+
+Several well-known linguists and psychologists were interviewed about
+the phenomenon.
+
+- Older listeners lack the ability to hear higher pitches, which could influence the choice between
+Laurel and Yanny (<a href = "https://www.theguardian.com/technology/2018/may/16/yanny-or-laurel-sound-illusion-sets-off-ear-splitting-arguments">Alais</a>)
+- Personal history could play a role in what you hear (
+<a href = "https://www.theguardian.com/technology/2018/may/16/yanny-or-laurel-sound-illusion-sets-off-ear-splitting-arguments">McDermott</a>).
+- The spectrogram is not typical of either Laurel or Yanny 
+(<a href = "https://www.theatlantic.com/technology/archive/2018/05/dont-rest-on-your-laurels/560483/">Sanker</a>)
+- The altered sound clip has higher noise and higher frequencies laid over a typical sound.
+
+## Hypothesizing in the Media
+
+Several well-known linguists and psychologists were interviewed about
+the phenomenon.
+
+- Older listeners lack the ability to hear higher pitches, which could influence the choice between
+Laurel and Yanny (<a href = "https://www.theguardian.com/technology/2018/may/16/yanny-or-laurel-sound-illusion-sets-off-ear-splitting-arguments">Alais</a>)
+- Personal history could play a role in what you hear (
+<a href = "https://www.theguardian.com/technology/2018/may/16/yanny-or-laurel-sound-illusion-sets-off-ear-splitting-arguments">McDermott</a>).
+- The spectrogram is not typical of either Laurel or Yanny 
+(<a href = "https://www.theguardian.com/technology/2018/may/16/yanny-or-laurel-sound-illusion-sets-off-ear-splitting-arguments">Sanker</a>)
+
+Very interesting: <a href = "https://www.nytimes.com/interactive/2018/05/16/upshot/audio-clip-yanny-laurel-debate.html">Adjusting the pitch can change what word you hear</a>
+
+## Hypothesizing in the Media
+
+Several linguists and psychologists were interviewed about
+the phenomenon.
+
+- Older listeners lack the ability to hear higher pitches, which could influence the choice between
+Laurel and Yanny (<a href = "https://www.theguardian.com/technology/2018/may/16/yanny-or-laurel-sound-illusion-sets-off-ear-splitting-arguments">Alais</a>)
+- Personal history could play a role in what you hear (
+<a href = "https://www.theguardian.com/technology/2018/may/16/yanny-or-laurel-sound-illusion-sets-off-ear-splitting-arguments">McDermott</a>).
+- The spectrogram is not typical of either Laurel or Yanny 
+(<a href = "https://www.theguardian.com/technology/2018/may/16/yanny-or-laurel-sound-illusion-sets-off-ear-splitting-arguments">Sanker</a>)
+
+<strong>Question: Does your regional dialect influenct your likelihood of
+hearing Laurel vs. Yanny?</strong>
+
+## Hypothesis
+
+Different dialects have different proportions of Laurel vs. Yanny.
+
+More specifically: Geographic location, as a proxy for dialect, shows a 
+difference in choice of Laurel vs.Yanny.
+
+## Method
+
+- Get a large number of Tweets about Laurel and Yanny
+- Code them as team Laurel or team Yanny
+- Code them by geographic location of the Tweeter
+- Test location as related to word choice
+
+## Method, Refined
+
+- Use the twitteR package to automatically retrieve tweets via the Twitter API
+
+## Method, Refined
+
+- Use the twitteR package to automatically retrieve tweets via the Twitter API
+- Code each tweet as Laurel or Yanny based upon "majority rules"
+
+## Method, Refined
+
+- Use the twitteR package to automatically retrieve tweets via the Twitter API
+- Code each tweet as Laurel or Yanny based upon "majority rules"
+- Use user-provided profile information stating geographic location. This
+information is usually not provided by users, and so it will reduce the sample
+size.
+
+## Method, Refined
+
+- Use the twitteR package to automatically retrieve tweets via the Twitter API
+- Code each tweet as Laurel or Yanny based upon "majority rules"
+- Use user-provided profile information stating geographic location. This
+information is usually not provided by users, and so it will reduce the sample
+size.
+- De-dupe the dataset to remove duplicate posters. Take the first tweet 
+from users who tweeted multiple times.
+
+## Method, Refined
+
+- Use the twitteR package to automatically retrieve tweets via the Twitter API
+- Code each tweet as Laurel or Yanny based upon "majority rules"
+- Use user-provided profile information stating geographic location. This
+information is usually not provided by users, and so it will reduce the sample
+size.
+- De-dupe the dataset to remove duplicate posters. Take the first tweet 
+from users who tweeted multiple times.
+- Merge the geo-coded dataset of Tweets with census locations, to code by census
+region.
+
+## Method, In Practice
+
+- 37,064 unique tweets containing the word "yanny" or the word "laurel" (or both) were gathered via the Twitter API using the <a href="https://cran.r-project.org/web/packages/twitteR/twitteR.pdf">twitteR</a> package.
+- These tweets included retweets, since it was assumed that retweeting also signified contributing an opinion to the debate.
+- From these tweets, the Twitter API was used again to retrieve the location information (if any) listed in the bio of each relevent accounts.
+
+## Method, In Practice
+
+- After gathering the data, a "winner"" was calculated, by tweet, by tallying "laurel" mentions vs. "yanny" mentions and taking the highest tally. This winner formed the metric of a speaker's choice.
+- This approach assumed that a speaker would mention more often the form that they prefer -- for example:
+
+## Method, In Practice
+
+- After gathering the data, a "winner"" was calculated, by tweet, by tallying "laurel" mentions vs. "yanny" mentions and taking the highest tally. This winner formed the metric of a speaker's choice.
+- This approach assumed that a speaker would mention more often the form that they prefer -- for example:
+
+<em>When I say yanny... do you hear laurel?" - Coworker. Bruhhhh what? #laurel</em>
+
+## Method, In Practice
+
+- After gathering the data, a "winner"" was calculated, by tweet, by tallying "laurel" mentions vs. "yanny" mentions and taking the highest tally. This winner formed the metric of a speaker's choice.
+- This approach assumed that a speaker would mention more often the form that they prefer -- for example:
+
+<em>This may cause divorce. My husband hears it wrong. #Laurel https://t.co/FTmCsZoY8i</em>
+
+## Method, In Practice
+
+- After gathering the data, a "winner"" was calculated, by tweet, by tallying "laurel" mentions vs. "yanny" mentions and taking the highest tally. This winner formed the metric of a speaker's choice.
+- This approach assumed that a speaker would mention more often the form that they prefer -- for example:
+
+<em>Transervice is team Yanny... what about you Yanny or Laurel, what do you hear? https://t.co/lxG6p8g01I</em>
+
+## Method, In Practice
+
+- After gathering the data, a "winner"" was calculated, by tweet, by tallying "laurel" mentions vs. "yanny" mentions and taking the highest tally. This winner formed the metric of a speaker's choice.
+- This approach assumed that a speaker would mention more often the form that they prefer -- for example:
+
+<em>I stg this is causing a war in my family.  3/5 hear #yanny while 2/5 hears #laurel I'm 100% team Yanny https://t.co/PG7twEhLbB</em>
+
+## Method, In Practice
+
+- After gathering the data, a "winner"" was calculated, by tweet, by tallying "laurel" mentions vs. "yanny" mentions and taking the highest tally. This winner formed the metric of a speaker's choice.
+- This approach assumed that a speaker would mention more often the form that they prefer -- for example:
+
+<em>RT @LoriLoughlin: I hear Yanny. #yannyvslaurel #Yanny https://t.co/fUo9jDDqhp </em>
+
+## Keep in Mind...
+
+- After cutting down to users who provided their location, n = 6424.
+- I used the free Twitter API, which uses a "Twitter recommended" result,
+rather than an exhaustive result. This could bias the data.
+- I sampled from Twitter, so the population of interest is only Twitter users -- and moreover, Twitter users who volunteered their geolocation in their profile.
+This could again bias the data, and results may not generalize to U.S. or global
+populations.
+- Dialects are much more granular than census regions. It is necessary
+to aggregate at the census region level to achieve sample size, but this
+is a rough aggregate approximation for dialects.
+
+
+## Results
+
+```{r readData, echo = FALSE, message = FALSE, warning = FALSE}
+library(fiftystater)
+library(dplyr)
+library(ggplot2)
+dataset <- read.csv("anonymizedDedupedDataset.csv", stringsAsFactors = FALSE)
+states <- read.csv("states.csv", stringsAsFactors = FALSE)
+```
+
+```{r reformatData}
+choiceByReg <- 
+  as.data.frame.matrix(table(dataset$LargerRegion,
+                             dataset$choice))
+choiceByReg$neither <- NULL
+choiceByReg$ratio <- choiceByReg$laurel / choiceByReg$yanny
+choiceByReg$LargerRegion <- row.names(choiceByReg)
+choiceByReg <- right_join(choiceByReg, 
+                          states, 
+                          by="LargerRegion")
+choiceByReg <- choiceByReg[!is.na(choiceByReg$ratio) & choiceByReg$ratio != Inf & choiceByReg$LargerRegion !="", ]
+pr <- choiceByReg[choiceByReg$Abbreviation == "PR", ]
+
+choiceByRegSmall <-
+  as.data.frame.matrix(table(dataset$CensusRegion,
+                             dataset$choice))
+choiceByRegSmall$neither <- NULL
+choiceByRegSmall$ratio <- choiceByRegSmall$laurel / choiceByRegSmall$yanny
+choiceByRegSmall$CensusRegion <- row.names(choiceByRegSmall)
+choiceByRegSmall <- right_join(choiceByRegSmall, 
+                          states, 
+                          by="CensusRegion")
+choiceByRegSmall <- choiceByRegSmall[!is.na(choiceByRegSmall$ratio) & choiceByRegSmall$ratio != Inf & choiceByRegSmall$LargerRegion !="", ]
+```
+
+```{r plotByLargerRegionSubset}
+choiceByReg <- choiceByReg[! choiceByReg$State %in% c("gaum", "puerto rico", "alaska"), ]
+
+ggplot(choiceByReg, aes(map_id = State)) + 
+        geom_map(aes(fill=ratio), map = fifty_states) + 
+        expand_limits(x = fifty_states$long, y = fifty_states$lat) +
+        coord_map() + 
+        scale_x_continuous(breaks = NULL) + 
+       scale_y_continuous(breaks = NULL) +
+       labs(x = "", y = "") +
+       theme(legend.position = "bottom", 
+             panel.background = element_blank())
+```
+
+## Results
+```{r plot2}
+choiceByRegSmall <- choiceByRegSmall[! choiceByRegSmall$State %in% c("gaum", "puerto rico", "alaska"), ]
+ggplot(choiceByRegSmall, aes(map_id = State)) + 
+        geom_map(aes(fill=ratio), map = fifty_states) + 
+        expand_limits(x = fifty_states$long, y = fifty_states$lat) +
+        coord_map() + 
+        scale_x_continuous(breaks = NULL) + 
+       scale_y_continuous(breaks = NULL) +
+       labs(x = "", y = "") +
+       theme(legend.position = "bottom", 
+             panel.background = element_blank())
+```
+
+## Results
+
+When mapped by census region, the Laurel/Yanny preference does seem to have a geographic component.
+
+## Analysis
+```{r prep-analysis}
+counts <- dataset[!is.na(dataset$LargerRegion) &
+                         dataset$LargerRegion != "", ] %>%
+  group_by(LargerRegion) %>%
+  summarize(YannyCount = sum(yannyCount), n = n()) %>%
+  filter(n> 5) %>%
+  ungroup() %>%
+  mutate(proportion = YannyCount / n) %>%
+  mutate(expected_proportion = mean(proportion)) %>%
+  mutate(expected_yanny_count = expected_proportion * n) %>%
+  mutate(x_2 = sum((YannyCount - expected_yanny_count)^2)/expected_yanny_count)
+
+chi_square_num <- sum(counts$x_2)
+p <- pchisq(chi_square_num, 
+            df = nrow(counts) - 1, 
+            lower.tail = FALSE)
+```
+A chi-squared test was performed using the average of the Laurel/Yanny 
+proportions to establish an expected value for Laurel choices (p < 0.05).
+
+## Analysis
+
+- Could you even predict choice by census region?
+- A logistic regression model predicting choosing Yanny from census region
+found that none of the regions significantly predicted Yanny choice.
+- It is worth keeping in mind that there are <em>many</em> potential factors
+that would go into this choice, though.
+
+```{r log_model, include = FALSE, echo = FALSE, message = FALSE, warning = FALSE}
+model_dataset <- dataset[!is.na(dataset$LargerRegion) &
+                         dataset$LargerRegion != "", ] %>%
+  filter(choice != "neither") %>%
+  mutate(YannyChosen = as.numeric(choice == "yanny"))
+  
+fit <- glm(YannyChosen ~ factor(LargerRegion), data = model_dataset)
+summary(fit)
+```
+
+## Conclusion
+
+Based upon one experiment using very noisy social media data -- it does look
+like a tentative difference exists by location when looking at  Laurel-Yanny preference. The relationship was not strong enough to build a preditive model.
+
+Time for a more balanced and complete experiment?
